@@ -1,23 +1,23 @@
 let amigoLista=[];
 
 function adicionarAmigo() {
-    const  nomeAmigo = document.getElementById('amigo').value;
+    let nome = document.getElementById('amigo').value;
+    const regex = /^[A-Za-zÀ]/;//exige que o nome comece com uma letra e a torna maiuscila mesmo que esteja minuscula
 
-    if(nomeAmigo===''){
+    if(nome===''){
         alert('Insira um nome valido');
-        return;
+    }else{
+        amigoLista.push(nome);
     }
-    amigoLista.push(nomeAmigo);
     limparCampo();
     exibirLista();
-    inputNome.focus();
 }
 
 function exibirLista() {
     
     const listaAmigos = document.getElementById('listaAmigos');
     listaAmigos.innerHTML= '';
-    amigoLista.forEach((amigo) => {
+    amigoLista.forEach((amigo)=>{
         const li = document.createElement('li');
         li.textContent=amigo;
         listaAmigos.appendChild(li);
