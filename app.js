@@ -2,7 +2,7 @@ let amigoLista=[];
 
 function adicionarAmigo() {
     let nome = document.getElementById('amigo').value;
-    
+
     if(nome===''){
         alert('Por favor, insira um nome valido.');
     }
