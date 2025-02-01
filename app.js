@@ -2,13 +2,17 @@ let amigoLista=[];
 
 function adicionarAmigo() {
     let nome = document.getElementById('amigo').value;
-    const regex = /^[A-Za-zÀ]/;//exige que o nome comece com uma letra e a torna maiuscila mesmo que esteja minuscula
-
+    
     if(nome===''){
-        alert('Insira um nome valido');
-    }else{
-        amigoLista.push(nome);
+        alert('Por favor, insira um nome valido.');
     }
+
+    if(amigoLista.includes(nome)){
+        alert(`O nome ${nome} já esta na lista`);
+        limparCampo();
+        return;
+    }
+        amigoLista.push(nome);
     limparCampo();
     exibirLista();
 }
@@ -32,20 +36,15 @@ function limparCampo(){
 }
 
 function sortearAmigo() {
-    let quatElementLista=amigoLista.length;
+    const indiceSorteado=Math.floor(Math.random()*amigoLista.length);
+    const amigoSorteado= amigoLista[indiceSorteado];
     
-    if(quatElementLista == 100){
-        amigoLista =[];
-    }
+    //oculta a lista
+    const listaAmigos=document.getElementById('listaAmigos');
+    listaAmigos.style.display='nome';
 
-    let nomeEscolhido = parseInt(Math.random() *amigoLista.length);
-    if(amigoLista.includes(nomeEscolhido)){
-        return sortearAmigo();
+    let resultadoSorteio=document.getElementById('resultado');
+    resultadoSorteio.innerHTML= `<li>O amigo secreto é: ${amigoSorteado}</li>`;
 
-       }else{
-        amigoLista.push(nomeEscolhido);
-        console.log(amigoLista);
-        console.log(nomeEscolhido);
-       }
-       
+
 }
